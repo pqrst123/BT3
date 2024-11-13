@@ -1,0 +1,95 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
+
+contract Bank{
+    uint256 balance=0;
+    address public accOwner;
+
+    constructor(){
+        accOwner= msg.sender;
+    }
+
+    function Deposit() public  payable {
+        require(accOwner==msg.sender, "Your are not owner");
+        require(msg.value > 0, "Amount should be greater than 0!");
+        balance += msg.value;
+    }
+
+    function Withdraw() public payable {
+        require(accOwner==msg.sender, "Your are not owner");
+        require(msg.value > 0, "Amount should be greater than 0!");
+        balance -= msg.value;
+    }
+
+    function showBalance() public  view returns(uint256){
+        require(accOwner==msg.sender, "You are not owner");
+        return balance;
+    }
+}
+
+
+
+
+
+
+
+/*
+1.     
+What is a Smart Contract? 
+A smart contract is a self-executing contract with code that runs on a 
+blockchain. It automatically enforces terms and conditions agreed upon 
+by all parties. 
+2.   What is a Test Network? 
+A test network (testnet) is a blockchain network used for testing smart 
+contracts and applications without real currency. Examples include 
+Ropsten and Goerli for Ethereum. 
+3.   What is MetaMask, and why is it used? 
+MetaMask is a browser extension and wallet that allows users to manage 
+and interact with Ethereum-based assets and decentralized applications 
+(dApps). It’s used to deploy and test smart contracts on test networks. 
+4.   
+Explain the Role of MetaMask in Smart Contract Deployment. 
+MetaMask connects to Ethereum networks and provides an account to 
+sign and send transactions, allowing users to deploy and test smart 
+contracts. 
+5.  How Do You Deploy a Smart Contract on a Test Network? 
+• Write the smart contract code. 
+• Use Remix (online IDE) to compile the code. 
+• Connect MetaMask to Remix and choose a test network. 
+• Deploy the contract using MetaMask to sign and send the 
+transaction. 
+6.   
+7.   
+Explain the Deposit Operation in the Bank Account Smart 
+Contract. 
+The deposit function allows a user to send a specific amount of 
+cryptocurrency to their account balance within the smart contract. 
+Explain the Withdraw Operation in the Bank Account Smart 
+Contract. 
+The withdraw function enables a user to take money out of their account 
+balance, provided they have sufficient funds available. 
+8. How Does the Show Balance Operation Work in the Smart 
+Contract? 
+The show balance function returns the current balance of a user’s 
+account, showing how much cryptocurrency they have deposited in the 
+contract. 
+9.   What Is the Objective of Using MetaMask and Test Network in 
+This Assignment? 
+The objective is to teach students how to interact with Ethereum 
+networks and deploy smart contracts, gaining practical experience in 
+blockchain technology and its applications. 
+10.   What Are the Key Advantages of Using Smart Contracts for 
+Banking Operations? 
+• Transparency: All operations are recorded on the blockchain. 
+• Security: Transactions are encrypted and tamper-proof 
+• Automation: Smart contracts self-execute based on coded conditions. 
+11. How Do You Test and Verify the Smart Contract? 
+Use a test network to run transactions (deposit, withdraw, balance 
+check) and confirm they work as expected. Errors or bugs can be fixed 
+and retested 
+12.  What Are Gas Fees, and Why Are They Relevant in Smart 
+Contracts? 
+Gas fees are the transaction costs required to run a smart contract on the 
+blockchain. They’re necessary for processing and securing transactions 
+but are lower on test networks.
+*/
